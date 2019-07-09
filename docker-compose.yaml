@@ -1,0 +1,21 @@
+version: '3.2'
+services:
+
+  servo:
+    build: .
+    environment:
+      - OPTUNE_ACCOUNT=$OPTUNE_ACCOUNT
+    volumes:
+      - type: bind
+        source: ./conifg.yaml
+        target: /servo/config.yaml
+        read_only: true
+      - type: bind
+        source: ./optune.token
+        target: /run/secrets/optune_auth_token
+        read_only: true
+      - type: bind
+        source: ./signalfx_api_key
+        target: /etc/optune-sfx-auth/api_key
+        read_only: true
+    command: $OPTUNE_APP
