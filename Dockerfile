@@ -3,6 +3,7 @@ FROM python:3.5-slim
 WORKDIR /servo
 
 # Install dependencies
+# hadolint ignore=DL3013
 RUN pip3 install PyYAML requests signalfx
 RUN apt install -y openjdk-8-jre-headless
 
